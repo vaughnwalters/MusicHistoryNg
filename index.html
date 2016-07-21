@@ -8,10 +8,90 @@
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="styles/main.css">
 </head>
-<body>
+<body ng-app="MusicHistory">
   
 
-  
+<div ng-controller="Controller">
+
+  <header>
+    <ul class="top">
+      <li id ng-click="viewMusic()">View Music</li>
+       <li> | </li>
+      <li ng-click="addMusic()">Add Music</li>
+    </ul>
+  </header>
+
+
+
+
+  <article>
+    <div class="bothSides">
+      <!-- left section -->
+      <div class="left">  
+        <div>
+          <label>Artist:</label>
+        </div>
+
+        <div>
+          <select width="100%" name="Artist" id = "artistFilter" class="fullWidth">
+            
+          </select>
+        </div>
+        
+        <div><label>Album:</label></div>
+        <div>
+          <select name="Album" id="albumFilter" class="fullWidth">
+          </select>
+        </div>
+
+          
+          <div class="filterButton">
+           <button value="filter">Filter</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- right section -->
+
+      <div class="right">
+
+      <!-- show song view -->
+        <div id="showSongs" ng-show="showListView">
+          <div ng-repeat="thingy in items">
+            <div>{{thingy.album}}</div>
+            <div>{{thingy.artist}}</div>
+            <div>{{thingy.title}}</div>
+            <div>
+              <button>Delete</button>
+            </div>
+          </div>
+        </div>
+
+      <!-- input song view -->
+        <div id="inputSongs" ng-show="!showListView">
+
+
+        <form>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" ng-model="newSong.title"/>     
+          </div>
+          <div class="form-group">
+            <label>Artist</label>
+            <input type="text" class="form-control"ng-model="newSong.Artist"/>         
+          </div>
+          <div class="form-group">
+            <label>Album</label>
+            <input type="text" class="form-control" ng-model="newSong.Album"/>
+          </div>
+          <button ng-click="addNewItem()">Add Song</button>
+        </form>
+      </div>
+      
+    </article> 
+
+</div>  <!-- closing controller div -->
+    
 
   <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
